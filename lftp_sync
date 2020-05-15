@@ -2,7 +2,8 @@
 # login information for your seedbox, no quotes
 login=USERNAME
 # password information for your seedbox, no quotes
-pass=myPassword
+# uncomment if you need it
+#pass=myPassword
 # host info for your seedbox. include full URL standard format is 
 # sftp://ftp.servername.com
 # sftp://seedbox works and you can just use a public/private key pair and
@@ -16,6 +17,15 @@ local_dir=/mnt/Data/Downloads/Completed/
 # the next few lines creates a temp file and locks it down so only one instance 
 # of this script runs at a time, then mirrors the remote directory (one-way) 
 # to the local computer.
+
+if [ -e hash lftp 2>/dev/null ]
+then
+  continue
+else
+  echo "You don't have lftp available."
+  exit 1
+fi
+
 trap "rm -f /tmp/lftp_sync.lock" SIGINT SIGTERM
 if [ -e /tmp/lftp_sync.lock ]
 then
@@ -32,7 +42,7 @@ else
   quit
 EOF
   rm -f /tmp/lftp_sync.lock
-  find /mnt/Data/Downloads/Completed -type f -exec ~/amc.sh {} +
+  find $local_dir -type f -exec ~/amc.sh {} +
   trap - SIGINT SIGTERM
   exit 0
 fi
