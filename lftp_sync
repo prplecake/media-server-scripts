@@ -18,10 +18,8 @@ local_dir=/mnt/Data/Downloads/Completed/
 # of this script runs at a time, then mirrors the remote directory (one-way) 
 # to the local computer.
 
-if [ -e hash lftp 2>/dev/null ]
+if ! [ hash lftp 2>/dev/null ]
 then
-  continue
-else
   echo "You don't have lftp available."
   exit 1
 fi
