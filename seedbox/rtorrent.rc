@@ -11,28 +11,43 @@ schedule2 = scgi_permission,0,0,"execute.nothrow=chmod,770,~/.rtorrent.socket"
 
 protocol.pex.set = yes
 
+system.daemon.set = true
 
 try_import = .rtorrent.rc.custom
+log.open_file = "rtorrent.log",(cat,/home/mjorgensen/data/rTorrent/rtorrent.log.,(system.pid))
+log.add_output = "debug", "rtorrent.log"
+log.add_output = "info", "rtorrent.log"
+log.add_output = "notice", "rtorrent.log"
+log.add_output = "warn", "rtorrent.log"
+log.add_output = "error", "rtorrent.log"
+
+import = /home/mjorgensen/.rtorrent.rc.custom
+
+directory = /home/mjorgensen/Torrents
+session = /home/mjorgensen/data/rTorrent/session
+encryption = allow_incoming,enable_retry,prefer_plaintext
+
 
 ## Following user should not change in any case - basic config & performance options etc.
 
-pieces.memory.max.set = 2000M
+pieces.memory.max.set = 1800M
 pieces.preload.type.set = 0
 pieces.hash.on_completion.set = no
 
 # While editing: please remember there are other people on your server!
-directory.default.set = ~/data
-session.path.set = ~/session
+directory.default.set = ~/Torrents
+session.path.set = ~/data/rTorrent/session
 
 system.file.max_size.set = 1000G
 system.file.allocate = 1
 
-network.scgi.open_local = ~/.rtorrent.socket
+#network.scgi.open_local = ~/.rtorrent.socket
+network.scgi.open_port = 127.0.0.1:5000
 network.send_buffer.size.set = 16M
 network.receive_buffer.size.set = 16M
 network.max_open_sockets.set = 1000
-network.http.max_open.set = 250
-network.max_open_files.set = 1000
+network.http.max_open.set = 100
+network.max_open_files.set = 600
 network.http.dns_cache_timeout.set = 20
 network.xmlrpc.size_limit.set = 16M
 network.port_range.set = 20000-60000
@@ -55,4 +70,4 @@ encoding.add = utf8
 method.insert = system.startup_time, value|const, (system.time)
 
 
-ipv4_filter.load = /etc/seedbox/config/localnet, preferred
+#ipv4_filter.load = /etc/seedbox/config/localnet, preferred

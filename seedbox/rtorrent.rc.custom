@@ -1,6 +1,8 @@
 # Move completed - hard link
 #	Creates a hardlink once a torrent is completed.
 #	Useful for automating file downloads without affecting seeding.
-method.insert = d.finished_dir, simple, "cat=~/data/completed/,$d.custom1="
+method.insert = d.finished_dir, simple, "cat=/home/mjorgensen/Torrents/completed/,$d.custom1="
+
 method.insert = d.data_path, simple, "if=(d.is_multi_file), (cat,(d.directory),/), (cat,(d.directory),/,(d.name))"
+
 method.set_key = event.download.finished,move_complete,"execute=cp,-al,$d.data_path=,$d.finished_dir="
