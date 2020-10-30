@@ -24,7 +24,12 @@ execute.throw = sh, -c, (cat,\
     "\"",(cfg.watch),"/load\" ",\
     "\"",(cfg.watch),"/start\" ")
 
-try_import = .rtorrent.rc.custom
+# Move completed - hard link
+#	Creates a hardlink once a torrent is completed.
+#	Useful for automating file downloads without affecting seeding.
+method.insert = d.finished_dir, simple, "cat=/home/mjorgensen/Torrents/completed/,$d.custom1="
+method.insert = d.data_path, simple, "if=(d.is_multi_file), (cat,(d.directory),/), (cat,(d.directory),/,(d.name))"
+method.set_key = event.download.finished,move_complete,"execute=cp,-al,$d.data_path=,$d.finished_dir="
 
 
 ## Listening port for incoming peer traffic (fixed; you can also randomize it)
