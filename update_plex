@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+curl -L $1 -o /tmp/plex.deb
+sudo dpkg -i /tmp/plex.deb
+rm /tmp/plex.deb
