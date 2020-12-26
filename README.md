@@ -16,6 +16,12 @@ seedbox. It depends on `lftp` requires configuration to suit your
 situation. I added an entry in `~/.ssh/config` with the required
 details. 
 
+I run `lftp_sync` every five minutes with a cronjob.
+
+```
+*/5 * * * * ~/lftp_sync
+```
+
 ## update_plex
 
 This script simply updates plex. It requires a single argument that is
