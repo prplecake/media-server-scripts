@@ -28,8 +28,8 @@ execute.throw = sh, -c, (cat,\
 #	Creates a hardlink once a torrent is completed.
 #	Useful for automating file downloads without affecting seeding.
 method.insert = d.finished_dir, simple, "cat=/home/mjorgensen/Torrents/completed/,$d.custom1="
-method.insert = d.data_path, simple, "if=(d.is_multi_file), (cat,(d.directory),/), (cat,(d.directory),/,(d.name))"
-method.set_key = event.download.finished,move_complete,"execute=cp,-al,$d.data_path=,$d.finished_dir="
+method.insert = d.done_data_path, simple, "if=(d.is_multi_file), (cat,(d.directory),/), (cat,(d.directory),/,(d.name))"
+method.set_key = event.download.finished,move_complete,"execute=cp,-al,$d.done_data_path=,$d.finished_dir="
 
 
 ## Listening port for incoming peer traffic (fixed; you can also randomize it)
