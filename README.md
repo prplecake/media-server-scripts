@@ -9,6 +9,12 @@ the others are inteded for the media server itself.
 This script automates organizing media once it's downloaded. This script
 is called by `lftp_sync` after it's done.
 
+It sources a `.env` file for a `$PLEX_MEDIA_DIR` variable.
+
+```bash
+echo "PLEX_MEDIA_DIR=/mnt/Media" > .env
+```
+
 ## lftp_sync
 
 This script automates downloading files from a remote server, like a
