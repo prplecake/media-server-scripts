@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 
+ROOTDIR=$(dirname $(readlink "$0") || pwd)
+echo "$ROOTDIR"
+source "$ROOTDIR/utils.sh"
+
+$(vercomp "5.0" "5.1"); echo "$?"
+
 URL="https://plex.tv/downloads/latest/5?channel=0&build=linux-x86_64&distro=debian"
 
-curl -L "$URL" -o /tmp/plex.deb
-sudo dpkg -i /tmp/plex.deb
-rm /tmp/plex.deb
+#curl -L "$URL" -o /tmp/plex.deb
+installed_version=$(dpkg -s plexmediaserver | grep "Version:" | sed 's/-.*//')
+new_version=$(dpkg --info /tmp/plex.deb | grep "Version:" | sed 's/-.*//')
+ver_compare=$($(vercomp $installed_version $new_version);echo "$?")
+echo "$ver_compare"
+echo "Installed $installed_version"
+echo "New $new_version"
+
+a=$(echo "$installed_version"|sed 's/-.*//')
+echo "$a"
+
+#sudo dpkg -i /tmp/plex.deb
+#rm /tmp/plex.deb
