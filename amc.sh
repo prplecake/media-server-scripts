@@ -1,6 +1,7 @@
-#!/bin/sh -xu
+#!/bin/bash -xu
 
-source .env
+ROOTDIR=$(dirname "$(readlink -f "$0")")
+source "$ROOTDIR/.env"
 
 filebot -script fn:amc --output "$PLEX_MEDIA_DIR" --action copy --conflict skip \
     --log-file amc.log -non-strict \
