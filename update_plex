@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-URL="https://plex.tv/downloads/latest/5?channel=0&build=linux-x86_64&distro=debian&X-Plex-Token=***REMOVED***"
+URL="https://plex.tv/downloads/latest/5?channel=0&build=linux-x86_64&distro=debian"
 
 curl -L "$URL" -o /tmp/plex.deb
 sudo dpkg -i /tmp/plex.deb
