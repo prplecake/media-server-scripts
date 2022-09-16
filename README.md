@@ -1,8 +1,8 @@
 # media-server-scripts
 
-These scripts aid in the administration of an media server, most were
-witten with Plex in mind. Some scripts are intended for seedboxes, and
-the others are inteded for the media server itself.
+These scripts aid in the administration of a media server, most were
+written with Plex in mind. Some scripts are intended for seedboxes, and
+the others are intended for the media server itself.
 
 ## amc.sh
 
