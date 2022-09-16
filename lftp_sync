@@ -1,6 +1,6 @@
 #!/bin/bash
 # login information for your seedbox
-login=mjorgensen
+login=prplecake
 # password information for your seedbox
 # uncomment if you need it
 #pass=myPassword
