@@ -25,7 +25,7 @@ My seedbox is configured in `~/.ssh/config`, so lftp can use pubkey
 authentication.
 
 On the remote side (on the seedbox itself), my rtorrent config creates a
-hardlink to a separate directory that ltfp pulls from. **As a result,
+hardlink to a separate directory that lftp pulls from. **As a result,
 the unmodified `lftp_sync` REMOVES SOURCE DIRECTORIES.**
 
 I run `lftp_sync` every five minutes with a cronjob.
@@ -36,7 +36,7 @@ I run `lftp_sync` every five minutes with a cronjob.
 
 ## update_plex
 
-This script simply updates plex. It requires a single argument that is
+This script simply updates Plex. It requires a single argument that is
 the URL to download the Plex update.
 
 By default it downloads the `linux-x86_64` build for Debian.
