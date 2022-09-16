@@ -1,22 +1,25 @@
 #!/bin/bash
-# login information for your seedbox, no quotes
+# login information for your seedbox
 login=mjorgensen
-# password information for your seedbox, no quotes
+# password information for your seedbox
 # uncomment if you need it
 #pass=myPassword
 # host info for your seedbox. include full URL standard format is 
 # sftp://ftp.servername.com
-# sftp://seedbox works and you can just use a public/private key pair and
-# configure in your ssh config.
+# sftp://seedbox works and you can just use a public/private key pair
+# and configure in your ssh config.
 host=sftp://seedbox
 # remote location where your finished downloads are on your seedbox
+# WARNING: by default this script removes source directories. If you
+# don't want this, remove `--remove-source-dirs` from the lftp command
+# on line 36.
 remote_dir=/home/$login/Torrents/completed/
 # local directory where you are storing your downloads for further processing
 local_dir=/mnt/Data/Torrents/Completed/
 
-# the next few lines creates a temp file and locks it down so only one instance 
-# of this script runs at a time, then mirrors the remote directory (one-way) 
-# to the local computer.
+# the next few lines creates a temp file and locks it down so only one
+# instance of this script runs at a time, then mirrors the remote
+# directory (one-way) to the local computer.
 
 trap "rm -f /tmp/lftp_sync.lock" SIGINT SIGTERM
 if [ -e /tmp/lftp_sync.lock ]
